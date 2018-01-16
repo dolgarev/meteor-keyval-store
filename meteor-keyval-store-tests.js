@@ -48,3 +48,11 @@ Tinytest.add('keyval-store - decCounter', function (test) {
   test.equal(store.decCounter('test3'), 0)
   test.isUndefined(store.decCounter('test3'))
 })
+
+Tinytest.add('keyval-store - incItem with upsert', function (test) {
+  test.equal(store.incItem('test_x1'), 1)
+})
+
+Tinytest.add('keyval-store - decItem with upsert', function (test) {
+  test.equal(store.decItem('test_x2'), -1)
+})

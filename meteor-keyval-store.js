@@ -55,7 +55,7 @@ export default (superclass = Mongo.Collection) => class extends superclass {
     return res.value === null ? UNDEF : res.value.val
   }
 
-  incItem (key, step = 1) {
+  incItem (key, step = 1, isUpsert = true) {
     const res = Meteor.wrapAsync(callback => {
       this._coll.findOneAndUpdate({
         _id: key
@@ -63,7 +63,8 @@ export default (superclass = Mongo.Collection) => class extends superclass {
         $inc: { val: step }
       }, {
         projection: { val: 1 },
-        returnOriginal: false
+        returnOriginal: false,
+        upsert: !!isUpsert
       }, callback)
     })()
     return res.value === null ? UNDEF : res.value.val
@@ -74,8 +75,8 @@ export default (superclass = Mongo.Collection) => class extends superclass {
     return this.incCounter(key, step)
   }
 
-  decItem (key, step = -1) {
+  decItem (key, step = -1, isUpsert = true) {
     step = step < 0 ? step : -Math.abs(step)
-    return this.incItem(key, step)
+    return this.incItem(key, step, isUpsert)
   }
 }
