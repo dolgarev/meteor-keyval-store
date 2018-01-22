@@ -71,12 +71,12 @@ export default (superclass = Mongo.Collection) => class extends superclass {
   }
 
   decCounter (key, step = -1) {
-    step = step < 0 ? step : -Math.abs(step)
+    step = step <= 0 ? step : -Math.abs(step)
     return this.incCounter(key, step)
   }
 
   decItem (key, step = -1, isUpsert = true) {
-    step = step < 0 ? step : -Math.abs(step)
+    step = step <= 0 ? step : -Math.abs(step)
     return this.incItem(key, step, isUpsert)
   }
 }
