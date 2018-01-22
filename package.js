@@ -14,13 +14,13 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.versionsFrom('1.6.0.1')
-  api.use(['ecmascript', 'mongo'])
-  api.mainModule('meteor-keyval-store.js')
+  api.use(['ecmascript', 'mongo'], 'server')
+  api.mainModule('meteor-keyval-store.js', 'server')
 })
 
 Package.onTest(function (api) {
   api.use('ecmascript')
   api.use('tinytest')
-  api.use('liberation:keyval-store')
-  api.mainModule('meteor-keyval-store-tests.js')
+  api.use('liberation:keyval-store', 'server')
+  api.mainModule('meteor-keyval-store-tests.js', 'server')
 })

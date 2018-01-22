@@ -1,4 +1,3 @@
-// Import Tinytest from the tinytest Meteor package.
 import { Tinytest } from 'meteor/tinytest'
 import KeyValStore from 'meteor/liberation:keyval-store'
 
